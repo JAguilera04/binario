@@ -15,26 +15,35 @@ import java.util.Scanner;
 public class Conversor {
 
     public static void Compilador() {
-        int numero = validadorNumero(pedirNum());
+        int numero = pedirNum();
         String binario = Division(numero);
         binario = Completar(binario);
         System.out.print(binario);
     }
 
     public static int pedirNum() {
+        int numero;
         Scanner entrada = new Scanner(System.in);
         System.out.println("introdusca el numero a convertir");
-        int numero = entrada.nextInt();
+        try{
+            numero = entrada.nextInt();
+            if (numero < 0 || numero >255) {
+                numero = pedirNum();
+            }
+        }catch(InputMismatchException e) {
+            numero=pedirNum();
+        }
         return numero;
     }
 
     public static int validadorNumero(int numero) {
         try {
+            
             if (numero < 0 || numero > 255) {
                 numero = pedirNum();
             }
-        } catch (NumberFormatException e) {
-            System.out.println(e);
+        } catch (InputMismatchException e) {
+            System.out.println("hola mundo");
         }
         return numero;
     }
