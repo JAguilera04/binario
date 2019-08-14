@@ -15,12 +15,13 @@ import java.util.Scanner;
 public class Conversor {
 
     public static void Compilador() {
-        int numero=validadorNumero(pedirNum());
-        String binario=Division(numero);
-        binario=Completar(binario);
+        int numero = validadorNumero(pedirNum());
+        String binario = Division(numero);
+        binario = Completar(binario);
         System.out.print(binario);
     }
-    public static int pedirNum(){
+
+    public static int pedirNum() {
         Scanner entrada = new Scanner(System.in);
         System.out.println("introdusca el numero a convertir");
         int numero = entrada.nextInt();
@@ -28,14 +29,14 @@ public class Conversor {
     }
 
     public static int validadorNumero(int numero) {
-        try{
-        if (numero < 0 || numero > 255) {
-           numero=pedirNum();
+        try {
+            if (numero < 0 || numero > 255) {
+                numero = pedirNum();
+            }
+        } catch (NumberFormatException e) {
+            System.out.println(e);
         }
-        }catch(NumberFormatException e){
-            numero=pedirNum();
-        }
-       return numero;
+        return numero;
     }
 
     public static String Division(int numero) {
@@ -50,9 +51,9 @@ public class Conversor {
     }
 
     public static String Completar(String resto) {
-        int dif=resto.length();
+        int dif = resto.length();
         if (resto.length() < 8) {
-            for (int i = 0; i < (8-dif); i++) {
+            for (int i = 0; i < (8 - dif); i++) {
                 resto = "0" + resto;
             }
         }
